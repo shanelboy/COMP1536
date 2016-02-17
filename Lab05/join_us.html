@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Sample layout rendering
+		</title>
+		<link href="join_us.css" rel="stylesheet" type="text/css"/>
+	</head>
+  
+  <body>
+    <!-- header -->
+    <div class="header">
+      <div class="header_interior">
+        <img src="images/logo.gif" alt="Logo" width="44" height="44" /> 
+        <h1 class="title">Company name
+        </h1>
+      </div>
+    </div>
+	
+    <!-- content -->
+    <div class="content_body">
+      <div class="content_interior">
+        <div class="left_column">
+          <div class="navigation">
+            <ul class="markermenu">
+              <li>
+                <a href="./index.html">Home
+                </a>
+              </li>
+              <li>
+                <a href="/index.html">Services
+                </a>
+              </li>
+              <li>
+                <a href="/index.html">Portfolio
+                </a>
+              </li>
+              <li>
+                <a href="/index.html">Join us
+                </a>
+              </li>
+              <li class="last-child">
+                <a href="/index.html">Contact Us
+                </a>
+              </li>		
+            </ul> 
+          </div> <!-- navigation -->
+
+          <div class="navigationbtm">
+          </div>
+          <br/>
+          <img src="images/img-2.jpg" alt="sample 2"/>
+        </div> <!-- left_column -->
+		
+        <div class="right_column">
+          <h1>Who we are
+          </h1>
+          <p>
+            We are group of CST students, past and present, offering our website creation services to non-profit organizations in the lower mainland. We work in teams made up of experts in design, development and project management.
+          </p>
+          <div class="hr">
+          </div>
+          <h2>Join us now!
+          </h2>
+          <p>
+            To join this dynamic group of web developers, fill in the application below and you will be contacted shortly.
+			</p>
+          <div class="main_inner">              
+            <form method="post" action="http://webdevfoundations.net/scripts/formdemo.asp" name="SampleForm">
+				<label for="job"<p><b>Which position are you applying for? <span class="star">*</span></b></p></label>
+					<select id="job">
+						<option></option>
+						<option value="Project Manager">Project Manager</option>
+						<option value="Graphic Designer">Graphic Designer</option>
+						<option value="Web Developer">Web Developer</option>
+						<option value="Database Administrator">Database Administrator</option>
+					</select>
+				<p><b>Passed Comp 1536? <span class="star">*</span></b></p>
+					<input type="radio" name="contact" id="yes" value="Yes" checked="checked" /><label for="yes"> Yes</label><br><br>
+					<input type="radio" name="contact" id="no" value="No" /><label for="no"> No</label>
+				<label for="days"><p><b>Earliest start date? <span class="star">*</span></b></p></label>
+					<input class="date" type="text" name="Month" id="days"> / 
+					<input class="date" type="text" name="Day"> / 
+					<input class="year" type="text" name="Year">
+					<pre class="name">MM              DD               YYYY</pre>
+				<label for="url"><p><b>Portfolio URL</b></p></label>
+					<input type="URL" name="url" class="url" id="url" value="http://">
+				<label for="resume"><p><b>Attach resume</b></p></label>
+					<input type="file" name="resume" id="resume"/>
+					<p class="resume">word or PDF Documents Only</p>
+				<label for="name"><p><b>Name <span class="star">*</span></b></p></label>
+					<input type="text" name="first name" id="name" class="first"/> <input type="text" name="last name" class="last"/>
+						<pre class="name">First                     Last</pre>		
+				<label for="email"><p><b>Email Address <span class="star">*</span></b></p></label>
+					<input type="email" name="email" id="email" class="email">		
+				<label for="phone"><p><b>Phone <span class="star">*</span></b></p></label>
+					<input type="tel" name="Phone" id="phone" class="phone1"> - 
+					<input type="tel" name="Phone" class="phone1"> - 
+					<input type="tel" name="Phone" class="phone2">
+					<pre class="name"><b>(###)           ###              ####</b></pre>						
+				<label for="addinf"><p class="addinf">Any additional information for us</p></label>
+					<textarea name="additionalInfo"id="addinf" rows="5" cols="45"></textarea><br><br>
+					<input type="submit" value="Submit"/>
+						</form>
+						
+					</div>
+        </div> <!-- right_column -->
+      </div> <!-- content_interior -->
+      <br clear="all"/>
+    </div> <!-- content_body -->
+	
+	<!-- footer-->
+    <div class="footer">
+      <div class="footer-inner">
+        <div style="text-align:center;">Copyright &copy; 2010 YourName | Designed by: 
+          <a href="#" class="studentName">Sean Lee/Harvard Sung
+          </a>
+        </div>
+      </div> <!-- footer-inner -->
+      <br clear="all"/>
+    </div> <!-- footer -->
+  </body>
+</html>
