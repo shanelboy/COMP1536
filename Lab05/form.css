@@ -1,0 +1,74 @@
+/* column right */
+
+.main_inner form{
+	padding-left:10px;
+}
+.main_inner select{
+	width:285px;
+}
+.main_inner p{
+	margin-top:8px;
+	margin-bottom:2px;
+}
+
+/* Date */
+.date {
+	width:35px;
+}
+.year {
+	width:50px;
+}
+
+/* URL */
+.url{
+	width:500px;
+}
+
+/* E-mail*/
+.email{
+	width:500px;
+}
+
+/* Resume */
+.resume {
+	font-size:10px;
+}
+
+/* Name */
+.name {
+	font-family:"Arial", sans-serif;
+	font-size:11px;
+}
+.name2 {
+	font-family:"Arial", sans-serif;
+	font-size:13px;
+}
+.first {
+	width:70px;
+}
+.last{
+	width:120px;
+}
+.studentName{
+	color:#3F5A5E;
+	text-decoration:none;
+}
+
+/* Phone Number */
+.phone1 {
+	width:35px;
+}
+.phone2{
+	width:40px;
+}
+
+/* Addtional Information Box */
+.addinf {
+	color:#3F5A5E;
+}
+
+
+/* Star */
+.star{
+	color:#ff0000;
+}

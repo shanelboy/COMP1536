@@ -1,0 +1,29 @@
+/* General table formatting */
+.right_column table{
+	border: 1px solid #113511;
+	max-width: 300px;
+	margin-left: 50px;
+	margin-top: 15px;
+	border-collapse: collapse;
+
+}
+
+/* First column formatting*/
+.section {
+	font-weight: bold;
+	text-align: center;
+	padding = 0px;
+}
+
+/* Formatting for every other row */
+.right_column table tr:nth-child(odd) {
+	background-color: #FFFFFF;
+}
+
+/*Embedded video*/
+.video {
+	width: 600px;
+	height: 350px;
+	margin-left: 50px;
+	margin-top: 5px;
+}
