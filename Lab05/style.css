@@ -37,6 +37,7 @@ div .header_interior img {float:left; margin-right:10px;}
 .content_body{
 	margin-top:88px;
 	background-color:#F6F1DE;
+	min-height: 625px;
 }
 
 .content_interior{
