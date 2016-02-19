@@ -6,11 +6,6 @@
 .main_inner select{
 	width:285px;
 }
-.main_inner p{
-	margin-top:8px;
-	margin-bottom:2px;
-}
-
 /* Date */
 .date {
 	width:35px;
@@ -18,7 +13,12 @@
 .year {
 	width:50px;
 }
-
+.day {
+	padding-left:39px;
+	}
+.year1{
+	padding-left:42px;
+}
 /* URL */
 .url{
 	width:500px;
@@ -37,11 +37,7 @@
 /* Name */
 .name {
 	font-family:"Arial", sans-serif;
-	font-size:11px;
-}
-.name2 {
-	font-family:"Arial", sans-serif;
-	font-size:13px;
+	font-size:10px;
 }
 .first {
 	width:70px;
@@ -53,6 +49,9 @@
 	color:#3F5A5E;
 	text-decoration:none;
 }
+.name1 {
+	padding-left:61px;
+}
 
 /* Phone Number */
 .phone1 {
@@ -60,6 +59,12 @@
 }
 .phone2{
 	width:40px;
+}
+.pNumber{
+	padding-left:34px;
+}
+.pNumber1{
+	padding-left:37px;
 }
 
 /* Addtional Information Box */
@@ -72,3 +77,5 @@
 .star{
 	color:#ff0000;
 }
+
+/* Validated */
