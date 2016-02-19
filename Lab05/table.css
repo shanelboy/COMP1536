@@ -1,7 +1,7 @@
 /* General table formatting */
 .right_column table{
 	border: 1px solid #113511;
-	max-width: 300px;
+	max-width: 298px;
 	margin-left: 50px;
 	margin-top: 15px;
 	border-collapse: collapse;
@@ -12,7 +12,7 @@
 .section {
 	font-weight: bold;
 	text-align: center;
-	padding = 0px;
+	padding: 0px;
 }
 
 /* Formatting for every other row */
@@ -27,3 +27,5 @@
 	margin-left: 50px;
 	margin-top: 5px;
 }
+
+/* Validated */
