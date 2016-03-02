@@ -31,6 +31,7 @@
 			if (!testPassedWeb(id))
 				alert("You will not be considered if you have not passed this course.");
 		}
+		
 		function testEmail(id){
 			var testEmailPattern = /(.com|.ca|.org)$/;
 			var emailValue = $(id).value;
@@ -42,6 +43,50 @@
 			if(!testEmail(id))
 				alert("You must provide a valid email address.")
 		}
+		
+		function testName(id){
+			var testNamePattern = /^([a-zA-Z]{1,15})$/;
+			var nameValue = $(id).value;
+			if (testNamePattern.test(nameValue))
+				return true;
+		}
+		
+		function warnTestName(id){
+			if (!testName(id))
+				alert("You must provide a valid name");
+		}
+		
+		function testPhoneDigit3(id){
+			var testDigit3Pattern = /(^[1-9])([0-9]{2})/;
+			var digit3 = $(id).value;
+			if (testDigit3Pattern.test(digit3))
+				return true;
+		}
+		
+		function warnPhoneDigit3(id){
+			var phone1 = $('txtPhone_0').value;
+			var phone2 = $('txtPhone_1').value;
+			var phone3 = $('txtPhone_2').value;
+			if(phone1.length > 0 && phone2.length > 0 && phone3.length > 0)
+			if(!testPhoneDigit3(id))
+				alert("Please provide a proper telephone number.");
+		}
+		function testPhoneDigit4(id){
+			var testDigit4Pattern = /(^[1-9])([0-9]{3})/;
+			var digit4 = $(id).value;
+			if (testDigit4Pattern.test(digit4)||digit4 == "")
+				return true;
+		}
+		
+		function warnPhoneDigit4(id){
+			var phone1 = $('txtPhone_0').value;
+			var phone2 = $('txtPhone_1').value;
+			var phone3 = $('txtPhone_2').value;
+			if(phone1.length > 0 && phone2.length > 0 && phone3.length > 0)
+			if(!testPhoneDigit4(id))
+				alert("Please enter a valid last 4 digits.")
+		}
+
 		</script>
 	</head>
   
@@ -117,7 +162,7 @@
 					<input type="radio" name="contact" id="radPassedWeb_0" value="Yes" onclick="warnPassedWeb('radPassedWeb_0')" checked="checked" /><label for="yes"> Yes</label><br><br>
 					<input type="radio" name="contact" id="radPassedWeb_1" value="No" onclick="warnPassedWeb('radPassedWeb_0')"/><label for="no"> No</label><br><br>
 				<label for="days"><b>Earliest start date? <span class="star">*</span></b></label><br>
-					<input class="date" type="text" name="Month" id="txtStartDate_0" > / 
+					<input class="date" type="text" name="Month" id="txtStartDate_0" onchange="warnDateValid('txtStartDate_0')"> / 
 					<input class="date" type="text" name="Day" id="txtStartDate_1"> / 
 					<input class="year" type="text" name="Year" id="txtStartDate_2">
 					<p class="name">MM<span class="day">DD</span><span class="year1">YYYY</span></p>
@@ -127,14 +172,14 @@
 					<input type="file" name="resume" id="filResume"/>
 					<p class="resume">word or PDF Documents Only</p>
 				<label for="name"><b>Name <span class="star">*</span></b></label><br>
-					<input type="text" name="first name" id="txtFirstName" class="first"/> <input type="text" name="last name" class="last" id="txtLastName"/>
+					<input type="text" name="first name" id="txtFirstName" onblur="warnTestName('txtFirstName')" class="first"/> <input type="text" name="last name" class="last" id="txtLastName" onblur="warnTestName('txtLastName')"/>
 						<p class="name">First<span class="name1">Last</span></p>		
 				<label for="email"><b>Email Address <span class="star">*</span></b></label>
 					<input type="email" name="email" id="txtEmail" class="email" onblur="warnEmail('txtEmail')"><br><br>
 				<label for="phone"><b>Phone <span class="star">*</span></b></label><br>
-					<input type="tel" name="Phone" id="txtPhone_0" class="phone1"> - 
-					<input type="tel" name="Phone" id="txtPhone_1" class="phone1"> - 
-					<input type="tel" name="Phone" id="txtPhone_2" class="phone2">
+					<input type="tel" name="Phone" id="txtPhone_0" maxlength ="3" class="phone1" onchange="warnPhoneDigit3('txtPhone_0')"> - 
+					<input type="tel" name="Phone" id="txtPhone_1" maxlength ="3" class="phone1" onchange="warnPhoneDigit3('txtPhone_1')"> - 
+					<input type="tel" name="Phone" id="txtPhone_2" maxlength ="4" class="phone2" onchange="warnPhoneDigit4('txtPhone_2')">
 					<p class="name"><b>(###)<span class="pNumber">###</span><span class="pNumber1">####</span></b></p>						
 				<label for="addinf" class="addinf">Any additional information for us</label>
 					<textarea name="additionalInfo" id="taComments" rows="5" cols="45"></textarea><br><br>
