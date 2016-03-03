@@ -87,7 +87,7 @@
 				alert("You must provide a valid email address.");
 		}
 		function testPhoneDigit3(id){
-			var testDigit3Pattern = /(^[1-9])([0-9]{2})/;
+			var testDigit3Pattern = /([1-9])([0-9]{2})/;
 			var digit3 = $(id).value;
 			if (testDigit3Pattern.test(digit3))
 				return true;
@@ -103,9 +103,9 @@
 		}
 		
 		function testPhoneDigit4(id){
-			var testDigit4Pattern = /(^[1-9])([0-9]{3})/;
+			var testDigit4Pattern = /([1-9])([0-9]{3})/;
 			var digit4 = $(id).value;
-			if (testDigit4Pattern.test(digit4)||digit4 == "")
+			if (testDigit4Pattern.test(digit4)|| digit4 == "")
 				return true;
 		}
 		
@@ -115,7 +115,7 @@
 			var phone3 = $('txtPhone_2').value;
 			if(phone1.length > 0 && phone2.length > 0 && phone3.length > 0)
 			if(!testPhoneDigit4(id))
-				alert("Please enter a valid last 4 digits.");
+				alert("Please enter a valid phone number.");
 		}
 		
 		function testResume(id){
