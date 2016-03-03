@@ -86,43 +86,36 @@
 			if(!testEmail(id))
 				alert("You must provide a valid email address.");
 		}
-		function testPhoneDigit3(id){
+		function testPhoneDigit(id){
 			var testDigit3Pattern = /([1-9])([0-9]{2})/;
-			var digit3 = $(id).value;
-			if (testDigit3Pattern.test(digit3))
-				return true;
-		}
-		
-		function warnPhoneDigit3(id){
-			var phone1 = $('txtPhone_0').value;
-			var phone2 = $('txtPhone_1').value;
-			var phone3 = $('txtPhone_2').value;
-			if(phone1.length > 0 && phone2.length > 0 && phone3.length > 0)
-			if(!testPhoneDigit3(id))
-				alert("Please provide a proper telephone number.");
-		}
-		
-		function testPhoneDigit4(id){
 			var testDigit4Pattern = /([1-9])([0-9]{3})/;
-			var digit4 = $(id).value;
-			if (testDigit4Pattern.test(digit4)|| digit4 == "")
-				return true;
+			var digit = $(id).value;
+			if (digit.length == 3){
+				if (testDigit3Pattern.test(digit)){
+					return true;
+				}else {return false;}
+			} else if (digit.length == 4){
+				if(testDigit4Pattern.test(digit)){
+					return true;
+				} else {return false;}
+			}else {return false;}
 		}
 		
-		function warnPhoneDigit4(id){
+		function warnPhoneDigit(id){
 			var phone1 = $('txtPhone_0').value;
 			var phone2 = $('txtPhone_1').value;
 			var phone3 = $('txtPhone_2').value;
 			if(phone1.length > 0 && phone2.length > 0 && phone3.length > 0)
-			if(!testPhoneDigit4(id))
-				alert("Please enter a valid phone number.");
+			if(testPhoneDigit(id) == false)
+				alert("Please provide a proper telephone number.");
 		}
 		
 		function testResume(id){
 			var resume = $(id).value;
-			var resumePattern = /((docx?)|(pdf))$/;
+			var resume3Str = resume.substring(resume.length-3)
+			var resumePattern = /((d?ocx?)|(pdf))$/;
 			if (resume.length > 0)
-			if(resumePattern.test(resume))
+			if(resumePattern.test(resume3Str))
 			return true;
 		}
 
@@ -220,9 +213,9 @@
 				<label for="email"><b>Email Address <span class="star">*</span></b></label>
 					<input type="email" name="email" id="txtEmail" class="email" onblur="warnEmail('txtEmail')"><br><br>
 				<label for="phone"><b>Phone <span class="star">*</span></b></label><br>
-					<input type="tel" name="Phone" id="txtPhone_0" maxlength ="3" class="phone1" onchange="warnPhoneDigit3('txtPhone_0')"> - 
-					<input type="tel" name="Phone" id="txtPhone_1" maxlength ="3" class="phone1" onchange="warnPhoneDigit3('txtPhone_1')"> - 
-					<input type="tel" name="Phone" id="txtPhone_2" maxlength ="4" class="phone2" onchange="warnPhoneDigit4('txtPhone_2')">
+					<input type="tel" name="Phone" id="txtPhone_0" maxlength ="3" class="phone1" onblur="warnPhoneDigit('txtPhone_0')"> - 
+					<input type="tel" name="Phone" id="txtPhone_1" maxlength ="3" class="phone1" onblur="warnPhoneDigit('txtPhone_1')"> - 
+					<input type="tel" name="Phone" id="txtPhone_2" maxlength ="4" class="phone2" onblur="warnPhoneDigit('txtPhone_2')">
 					<p class="name"><b>(###)<span class="pNumber">###</span><span class="pNumber1">####</span></b></p>						
 				<label for="addinf" class="addinf">Any additional information for us</label>
 					<textarea name="additionalInfo" id="taComments" rows="5" cols="45"></textarea><br><br>
