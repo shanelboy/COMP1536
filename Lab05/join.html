@@ -46,17 +46,17 @@
 				if(textBox == $('txtStartDate_0')){
 					if(monthPattern.test(textBoxValue)){
 					return true;
-					}else{return false;}
+					}
 				} else if(textBox == $('txtStartDate_1')){
 					if(dayPattern.test(textBoxValue)){
 					return true;
-					}else {return false;}
+					}
 				}else if(textBox == $('txtStartDate_2')){
 					if(yearPattern.test(textBoxValue)){
 					return true;
-					}else {return false;}
+					}
 				} else {return false;}
-			} return false;
+			} return true;
 		}
 		//Warning for invalid date format
 		function warnDateValid(id){
