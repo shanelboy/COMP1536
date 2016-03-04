@@ -6,86 +6,88 @@
 		</title>
 		<link href="style.css" rel="stylesheet" type="text/css"/>
 		<link href="form.css" rel="stylesheet" type="text/css" />
-		<script language="JavaScript" type="text/JavaScript">
+		<script>
+		//Shortcut for selecting id's
 		function $(id){
 			var element = document.getElementById(id);
 			if ( element == null)
 				alert( 'Programmer error: ' + id + ' does not exist.' );
 			return element;
 		}
-		
+		//Testing selection value
 		function testPositionValid(id){
 			return ($(id).selectedIndex != 0);
 		}
-		
+		//Warning for selection value
 		function warnPositionInvalid(id){
 			if (!testPositionValid(id))
 				alert( "You must select a position" );
 		}
-		
+		//Checking for radio button 
 		function testPassedWeb(id){
 			return($(id).checked == true);
 		}
-		
+		//Warning for invalid radio selection
 		function warnPassedWeb(id){
 			if (!testPassedWeb(id))
 				alert("You will not be considered if you have not passed this course.");
 		}
-		
+		//Testing for date
 		function testDateValid(id){
 			var textBox = $(id);
 			var textBoxValue = $(id).value;
 			var dayPattern = /(0[1-3]|1[0-9]|2[0-9]|3[0-1])/;
 			var monthPattern = /(0[1-9]|1[0-2])/;
 			var yearPattern = /((201[3-9])|(20[2-9])([0-9])|(2[1-9])([0-9])([0-9]))/;
-			if(textBox == $('txtStartDate_0')){
-				if(monthPattern.test(textBoxValue)){
-				return true;
-				}else{return false;}
-			} else if(textBox == $('txtStartDate_1')){
-				if(dayPattern.test(textBoxValue)){
-				return true;
-			}else {return false;}
-			}else if(textBox == $('txtStartDate_2')){
-				if(yearPattern.test(textBoxValue)){
-				return true;
-				}else {return false;}
-			} else {return false;}
-			
-		}
-		
-		function warnDateValid(id){
 			var month = $('txtStartDate_0').value;
 			var day = $('txtStartDate_1').value;
 			var year = $('txtStartDate_2').value;
 			if(month.length > 0 && day.length > 0 && year.length > 0){
+				if(textBox == $('txtStartDate_0')){
+					if(monthPattern.test(textBoxValue)){
+					return true;
+					}else{return false;}
+				} else if(textBox == $('txtStartDate_1')){
+					if(dayPattern.test(textBoxValue)){
+					return true;
+					}else {return false;}
+				}else if(textBox == $('txtStartDate_2')){
+					if(yearPattern.test(textBoxValue)){
+					return true;
+					}else {return false;}
+				} else {return false;}
+			} return false;
+		}
+		//Warning for invalid date format
+		function warnDateValid(id){
 			if(testDateValid(id) == false)
 				alert("Please enter a valid date.");
-			}
 		}
+		//Checking name
 		function testName(id){
 			var testNamePattern = /^([a-zA-Z]{1,15})$/;
 			var nameValue = $(id).value;
 			if (testNamePattern.test(nameValue))
 				return true;
 		}
-		
+		//Warning for invalid name format
 		function warnTestName(id){
 			if (!testName(id))
 				alert("You must provide a valid name");
 		}
-		
+		//Testing email format
 		function testEmail(id){
 			var testEmailPattern = /(.com|.ca|.org)$/;
 			var emailValue = $(id).value;
 			if (testEmailPattern.test(emailValue))
 				return true;
 		}
-		
+		//Warning for invalid email format
 		function warnEmail(id){
 			if(!testEmail(id))
 				alert("You must provide a valid email address.");
 		}
+		//Test phone number digits
 		function testPhoneDigit(id){
 			var testDigit3Pattern = /([1-9])([0-9]{2})/;
 			var testDigit4Pattern = /([1-9])([0-9]{3})/;
@@ -100,7 +102,7 @@
 				} else {return false;}
 			}else {return false;}
 		}
-		
+		//Warning for invalid format
 		function warnPhoneDigit(id){
 			var phone1 = $('txtPhone_0').value;
 			var phone2 = $('txtPhone_1').value;
@@ -109,7 +111,7 @@
 			if(testPhoneDigit(id) == false)
 				alert("Please provide a proper telephone number.");
 		}
-		
+		//Testing for resume file
 		function testResume(id){
 			var resume = $(id).value;
 			var resume3Str = resume.substring(resume.length-3)
@@ -118,7 +120,7 @@
 			if(resumePattern.test(resume3Str))
 			return true;
 		}
-
+		//Warning for invalid file format
 		function warnTestResume(id){
 			if(!testResume(id))
 			alert("Please select a file ending in .pdf/.doc/.docx");
@@ -184,9 +186,11 @@
           <p>
             To join this dynamic group of web developers, fill in the application below and you will be contacted shortly.
 			</p>
+		<!-- Form -->
 		<div class="main_inner">              
             <form method="post" action="http://webdevfoundations.net/scripts/formdemo.asp" name="SampleForm">
-				<label for="job"><b>Which position are you applying for? <span class="star">*</span></b></label>
+				<!-- Selection value -->
+				<label for='selPosition'><b>Which position are you applying for? <span class="star">*</span></b></label>
 					<select id='selPosition' onchange="warnPositionInvalid('selPosition')">
 						<option value="jobs">&nbsp;</option>
 						<option value="Project Manager">Project Manager</option>
@@ -194,30 +198,46 @@
 						<option value="Web Developer">Web Developer</option>
 						<option value="Database Administrator">Database Administrator</option>
 					</select>
+					
+				<!--Radio button -->
 				<p><b>Passed Comp 1536? <span class="star">*</span></b></p>
-					<input type="radio" name="contact" id="radPassedWeb_0" value="Yes" onclick="warnPassedWeb('radPassedWeb_0')" checked="checked" /><label for="yes"> Yes</label><br><br>
-					<input type="radio" name="contact" id="radPassedWeb_1" value="No" onclick="warnPassedWeb('radPassedWeb_0')"/><label for="no"> No</label><br><br>
-				<label for="days"><b>Earliest start date? <span class="star">*</span></b></label><br>
+					<input type="radio" name="contact" id="radPassedWeb_0" value="Yes" onclick="warnPassedWeb('radPassedWeb_0')" checked="checked" /><label for="radPassedWeb_0"> Yes</label><br><br>
+					<input type="radio" name="contact" id="radPassedWeb_1" value="No" onclick="warnPassedWeb('radPassedWeb_0')"/><label for="radPassedWeb_1"> No</label><br><br>
+				
+				<!-- Start date -->
+				<label for="txtStartDate_0"><b>Earliest start date? <span class="star">*</span></b></label><br>
 					<input class="date" type="text" name="Month" id="txtStartDate_0" maxlength="2" onchange="warnDateValid('txtStartDate_0')"> / 
 					<input class="date" type="text" name="Day" id="txtStartDate_1" maxlength="2" onchange="warnDateValid('txtStartDate_1')"> / 
 					<input class="year" type="text" name="Year" id="txtStartDate_2" maxlength ="4" onchange="warnDateValid('txtStartDate_2')">
 					<p class="name">MM<span class="day">DD</span><span class="year1">YYYY</span></p>
-				<label for="url"><b>Portfolio URL</b></label>
+				
+				<!-- Portfolio -->
+				<label for="txtPortfolio"><b>Portfolio URL</b></label>
 					<input type="url" name="url" class="url" id="txtPortfolio" placeholder="http://"><br><br>
-				<label for="resume"><b>Attach resume</b></label><br>
+				
+				<!-- Resume -->
+				<label for="filResume"><b>Attach resume</b></label><br>
 					<input type="file" name="resume" id="filResume" onchange="warnTestResume('filResume')"/>
 					<p class="resume">word or PDF Documents Only</p>
-				<label for="name"><b>Name <span class="star">*</span></b></label><br>
+				
+				<!-- Name -->
+				<label for="txtFirstName"><b>Name <span class="star">*</span></b></label><br>
 					<input type="text" name="first name" id="txtFirstName" onblur="warnTestName('txtFirstName')" class="first"/> <input type="text" name="last name" class="last" id="txtLastName" onblur="warnTestName('txtLastName')"/>
 						<p class="name">First<span class="name1">Last</span></p>		
-				<label for="email"><b>Email Address <span class="star">*</span></b></label>
+				
+				<!-- Email -->
+				<label for="txtEmail"><b>Email Address <span class="star">*</span></b></label>
 					<input type="email" name="email" id="txtEmail" class="email" onblur="warnEmail('txtEmail')"><br><br>
-				<label for="phone"><b>Phone <span class="star">*</span></b></label><br>
+				
+				<!-- Telephone -->
+				<label for="txtPhone_0"><b>Phone <span class="star">*</span></b></label><br>
 					<input type="tel" name="Phone" id="txtPhone_0" maxlength ="3" class="phone1" onblur="warnPhoneDigit('txtPhone_0')"> - 
 					<input type="tel" name="Phone" id="txtPhone_1" maxlength ="3" class="phone1" onblur="warnPhoneDigit('txtPhone_1')"> - 
 					<input type="tel" name="Phone" id="txtPhone_2" maxlength ="4" class="phone2" onblur="warnPhoneDigit('txtPhone_2')">
 					<p class="name"><b>(###)<span class="pNumber">###</span><span class="pNumber1">####</span></b></p>						
-				<label for="addinf" class="addinf">Any additional information for us</label>
+				
+				<!-- Comments -->
+				<label for="taComments" class="addinf">Any additional information for us</label>
 					<textarea name="additionalInfo" id="taComments" rows="5" cols="45"></textarea><br><br>
 					<input type="submit" value="Submit"/>
 			</form>						
