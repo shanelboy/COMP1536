@@ -42,22 +42,15 @@
 			var textBox = $(id +"_0");
 			var textBox1 = $(id +"_1");
 			var textBox2 = $(id +"_2");
-			var textBoxValue = textBox.value;
-			var textBoxValue1 = textBox1.value;
-			var textBoxValue2 = textBox2.value;
+			var month = textBox.value;
+			var day = textBox1.value;
+			var year = textBox2.value;
 			var dayPattern = /(0[1-9]|1[0-9]|2[0-9]|3[0-1])/;
 			var monthPattern = /(0[1-9]|1[0-2])/;
 			var yearPattern = /((201[3-9])|(20[2-9])([0-9])|(2[1-9])([0-9])([0-9]))/;
-			var month = $('txtStartDate_0').value;
-			var day = $('txtStartDate_1').value;
-			var year = $('txtStartDate_2').value;
 			if(month.length > 0 && day.length > 0 && year.length > 0){
-				if(monthPattern.test(textBoxValue)){
-					if(dayPattern.test(textBoxValue1)){
-						if(yearPattern.test(textBoxValue2)){
-							return true;
-						}else {return false;}
-					}else {return false;}
+				if(monthPattern.test(month) && dayPattern.test(day) && yearPattern.test(year)){
+					return true;
 				}else {return false;}
 			}else {return true;}
 		}
@@ -102,19 +95,12 @@
 			var digit = $(id+ "_0");
 			var digit1 = $(id+ "_1");
 			var digit2 = $(id + "_2");
-			var digitValue = digit.value;
-			var digitValue1 = digit1.value;
-			var digitValue2 = digit2.value;
-			var phone1 = $('txtPhone_0').value;
-			var phone2 = $('txtPhone_1').value;
-			var phone3 = $('txtPhone_2').value;
-			if(digitValue.length > 0 && digitValue1.length > 0 && digitValue2.length > 0){
-				if(testDigit3Pattern.test(digitValue)){
-					if(testDigit3Pattern.test(digitValue1)){
-						if(testDigit4Pattern.test(digitValue2)){
-							return true;
-						} else {return false;}
-					} else {return false;}
+			var areaCode = digit.value;
+			var first3Digit = digit1.value;
+			var last4Digit = digit2.value;
+			if(areaCode.length > 0 && first3Digit.length > 0 && last4Digit.length > 0){
+				if(testDigit3Pattern.test(areaCode) && testDigit3Pattern.test(first3Digit) && testDigit4Pattern.test(last4Digit)){
+					return true;
 				} else {return false;}
 			} else {return true;}
 		}
