@@ -7,6 +7,7 @@
 		<link href="style.css" rel="stylesheet" type="text/css"/>
 		<link href="form.css" rel="stylesheet" type="text/css" />
 		<script>
+		
 		//Shortcut for selecting id's
 		function $(id){
 			var element = document.getElementById(id);
@@ -14,6 +15,7 @@
 				alert( 'Programmer error: ' + id + ' does not exist.' );
 			return element;
 		}
+		
 		//Testing selection value
 		function testPositionValid(id){
 			return ($(id).selectedIndex != 0);
@@ -23,46 +25,49 @@
 			if (!testPositionValid(id))
 				alert( "You must select a position" );
 		}
+		
 		//Checking for radio button 
 		function testPassedWeb(id){
 			return($(id).checked == true);
 		}
+		
 		//Warning for invalid radio selection
 		function warnPassedWeb(id){
 			if (!testPassedWeb(id))
 				alert("You will not be considered if you have not passed this course.");
 		}
+		
 		//Testing for date
 		function testDateValid(id){
-			var textBox = $(id);
-			var textBoxValue = $(id).value;
-			var dayPattern = /(0[1-3]|1[0-9]|2[0-9]|3[0-1])/;
+			var textBox = $(id +"_0");
+			var textBox1 = $(id +"_1");
+			var textBox2 = $(id +"_2");
+			var textBoxValue = textBox.value;
+			var textBoxValue1 = textBox1.value;
+			var textBoxValue2 = textBox2.value;
+			var dayPattern = /(0[1-9]|1[0-9]|2[0-9]|3[0-1])/;
 			var monthPattern = /(0[1-9]|1[0-2])/;
 			var yearPattern = /((201[3-9])|(20[2-9])([0-9])|(2[1-9])([0-9])([0-9]))/;
 			var month = $('txtStartDate_0').value;
 			var day = $('txtStartDate_1').value;
 			var year = $('txtStartDate_2').value;
 			if(month.length > 0 && day.length > 0 && year.length > 0){
-				if(textBox == $('txtStartDate_0')){
-					if(monthPattern.test(textBoxValue)){
-					return true;
-					}
-				} else if(textBox == $('txtStartDate_1')){
-					if(dayPattern.test(textBoxValue)){
-					return true;
-					}
-				}else if(textBox == $('txtStartDate_2')){
-					if(yearPattern.test(textBoxValue)){
-					return true;
-					}
-				} else {return false;}
-			} return true;
+				if(monthPattern.test(textBoxValue)){
+					if(dayPattern.test(textBoxValue1)){
+						if(yearPattern.test(textBoxValue2)){
+							return true;
+						}else {return false;}
+					}else {return false;}
+				}else {return false;}
+			}else {return true;}
 		}
+		
 		//Warning for invalid date format
 		function warnDateValid(id){
 			if(testDateValid(id) == false)
 				alert("Please enter a valid date.");
 		}
+		
 		//Checking name
 		function testName(id){
 			var testNamePattern = /^([a-zA-Z]{1,15})$/;
@@ -70,6 +75,7 @@
 			if (testNamePattern.test(nameValue))
 				return true;
 		}
+		
 		//Warning for invalid name format
 		function warnTestName(id){
 			if (!testName(id))
@@ -82,37 +88,43 @@
 			if (testEmailPattern.test(emailValue))
 				return true;
 		}
+		
 		//Warning for invalid email format
 		function warnEmail(id){
 			if(!testEmail(id))
 				alert("You must provide a valid email address.");
 		}
+		
 		//Test phone number digits
 		function testPhoneDigit(id){
 			var testDigit3Pattern = /([1-9])([0-9]{2})/;
 			var testDigit4Pattern = /([1-9])([0-9]{3})/;
-			var digit = $(id).value;
+			var digit = $(id+ "_0");
+			var digit1 = $(id+ "_1");
+			var digit2 = $(id + "_2");
+			var digitValue = digit.value;
+			var digitValue1 = digit1.value;
+			var digitValue2 = digit2.value;
 			var phone1 = $('txtPhone_0').value;
 			var phone2 = $('txtPhone_1').value;
 			var phone3 = $('txtPhone_2').value;
-			if(phone1.length > 0 && phone2.length > 0 && phone3.length > 0){
-				if (digit.length == 3){
-					if (testDigit3Pattern.test(digit)){
-						return true;
-					}
-				} else if (digit.length == 4){
-					if(testDigit4Pattern.test(digit)){
-						return true;
-					}
-				}else {return false;}
-			} return true;
+			if(digitValue.length > 0 && digitValue1.length > 0 && digitValue2.length > 0){
+				if(testDigit3Pattern.test(digitValue)){
+					if(testDigit3Pattern.test(digitValue1)){
+						if(testDigit4Pattern.test(digitValue2)){
+							return true;
+						} else {return false;}
+					} else {return false;}
+				} else {return false;}
+			} else {return true;}
 		}
+		
 		//Warning for invalid format
 		function warnPhoneDigit(id){
-
 			if(testPhoneDigit(id) == false)
 				alert("Please provide a proper telephone number.");
 		}
+		
 		//Testing for resume file
 		function testResume(id){
 			var resume = $(id).value;
@@ -208,9 +220,9 @@
 				
 				<!-- Start date -->
 				<label for="txtStartDate_0"><b>Earliest start date? <span class="star">*</span></b></label><br>
-					<input class="date" type="text" name="Month" id="txtStartDate_0" maxlength="2" onchange="warnDateValid('txtStartDate_0')"> / 
-					<input class="date" type="text" name="Day" id="txtStartDate_1" maxlength="2" onchange="warnDateValid('txtStartDate_1')"> / 
-					<input class="year" type="text" name="Year" id="txtStartDate_2" maxlength ="4" onchange="warnDateValid('txtStartDate_2')">
+					<input class="date" type="text" name="Month" id="txtStartDate_0" maxlength="2" onchange="warnDateValid('txtStartDate')"> / 
+					<input class="date" type="text" name="Day" id="txtStartDate_1" maxlength="2" onchange="warnDateValid('txtStartDate')"> / 
+					<input class="year" type="text" name="Year" id="txtStartDate_2" maxlength ="4" onchange="warnDateValid('txtStartDate')">
 					<p class="name">MM<span class="day">DD</span><span class="year1">YYYY</span></p>
 				
 				<!-- Portfolio -->
@@ -233,9 +245,9 @@
 				
 				<!-- Telephone -->
 				<label for="txtPhone_0"><b>Phone <span class="star">*</span></b></label><br>
-					<input type="tel" name="Phone" id="txtPhone_0" maxlength ="3" class="phone1" onblur="warnPhoneDigit('txtPhone_0')"> - 
-					<input type="tel" name="Phone" id="txtPhone_1" maxlength ="3" class="phone1" onblur="warnPhoneDigit('txtPhone_1')"> - 
-					<input type="tel" name="Phone" id="txtPhone_2" maxlength ="4" class="phone2" onblur="warnPhoneDigit('txtPhone_2')">
+					<input type="tel" name="Phone" id="txtPhone_0" maxlength ="3" class="phone1" onblur="warnPhoneDigit('txtPhone')"> - 
+					<input type="tel" name="Phone" id="txtPhone_1" maxlength ="3" class="phone1" onblur="warnPhoneDigit('txtPhone')"> - 
+					<input type="tel" name="Phone" id="txtPhone_2" maxlength ="4" class="phone2" onblur="warnPhoneDigit('txtPhone')">
 					<p class="name"><b>(###)<span class="pNumber">###</span><span class="pNumber1">####</span></b></p>						
 				
 				<!-- Comments -->
