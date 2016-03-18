@@ -23,9 +23,11 @@
 		//Warning for selection value
 		function warnPositionInvalid(id){
 			if (!testPositionValid(id)){
-				alert( "You must select a position" );
+				$('itmPosition').className = 'error';
+				//alert( "You must select a position" );
 				return false;
 			} else {
+				$('itmPosition').className='';
 				return true;
 			}
 		}
@@ -38,10 +40,12 @@
 		//Warning for invalid radio selection
 		function warnPassedWeb(id){
 			if (!testPassedWeb(id)){
-				alert("You will not be considered if you have not passed this course.");
+				$('itmPassedWeb').className = 'error';
 				return false;
 			} else {
+				$('itmPassedWeb').className = '';
 				return true;
+
 			}
 		}
 		
@@ -63,9 +67,10 @@
 		//Warning for invalid date format
 		function warnDateValid(id){
 			if(testDateValid(id) == false){
-				alert("Please enter a valid date.");
+				$('itmStartDate').className = 'error';
 				return false;
 			} else {
+				$('itmStartDate').className = '';
 				return true;
 			}
 		}
@@ -81,9 +86,10 @@
 		//Warning for invalid name format
 		function warnTestName(id){
 			if (!testName(id)){
-				alert("You must provide a valid name");
+				$('itmName').className = 'error';
 				return false;
 			} else {
+				$('itmName').className = '';
 				return true;
 			}
 		}
@@ -98,9 +104,10 @@
 		//Warning for invalid email format
 		function warnEmail(id){
 			if(!testEmail(id)){
-				alert("You must provide a valid email address.");
+				$('itmEmail').className = 'error';
 				return false;
 			} else {
+				$('itmEmail').className = '';
 				return true;
 			}
 		}
@@ -122,9 +129,10 @@
 		//Warning for invalid format
 		function warnPhoneDigit(id){
 			if(testPhoneDigit(id) == false){
-				alert("Please provide a proper telephone number.");
+				$('itmPhone').className = 'error';
 				return false;
 			} else {
+				$('itmPhone').className = '';
 				return true;
 			}
 		}
@@ -142,9 +150,10 @@
 		//Warning for invalid file format
 		function warnTestResume(id){
 			if(!testResume(id)){
-			alert("Please select a file ending in .pdf/.doc/.docx");
+				$('itmResume').className = 'error';
 				return false;
 			} else {
+				$('itmResume').className = '';
 				return true;
 			}
 		}
@@ -226,6 +235,7 @@
             <form name="SampleForm" action="http://webdevfoundations.net/scripts/formdemo.asp" onsubmit="return formValidate()" method="post">
 				<!-- Selection value -->
 				<label for='selPosition'><b>Which position are you applying for? <span class="star">*</span></b></label>
+					<div id="itmPosition">
 					<select id='selPosition'>
 						<option value="jobs">&nbsp;</option>
 						<option value="Project Manager">Project Manager</option>
@@ -233,17 +243,20 @@
 						<option value="Web Developer">Web Developer</option>
 						<option value="Database Administrator">Database Administrator</option>
 					</select>
-					
+					</div>
 				<!--Radio button -->
 				<p><b>Passed Comp 1536? <span class="star">*</span></b></p>
+					<div id="itmPassedWeb">
 					<input type="radio" name="contact" id="radPassedWeb_0" value="Yes" checked="checked" /><label for="radPassedWeb_0"> Yes</label><br><br>
 					<input type="radio" name="contact" id="radPassedWeb_1" value="No"/><label for="radPassedWeb_1"> No</label><br><br>
-				
+					</div>
 				<!-- Start date -->
 				<label for="txtStartDate_0"><b>Earliest start date? <span class="star">*</span></b></label><br>
+					<div id="itmStartDate">
 					<input class="date" type="text" name="Month" id="txtStartDate_0" maxlength="2"> / 
 					<input class="date" type="text" name="Day" id="txtStartDate_1" maxlength="2"> / 
 					<input class="year" type="text" name="Year" id="txtStartDate_2" maxlength ="4" >
+					</div>
 					<p class="name">MM<span class="day">DD</span><span class="year1">YYYY</span></p>
 				
 				<!-- Portfolio -->
@@ -252,23 +265,31 @@
 				
 				<!-- Resume -->
 				<label for="filResume"><b>Attach resume</b></label><br>
+					<div id="itmResume">
 					<input type="file" name="resume" id="filResume"/>
+					</div>
 					<p class="resume">word or PDF Documents Only</p>
 				
 				<!-- Name -->
 				<label for="txtFirstName"><b>Name <span class="star">*</span></b></label><br>
-					<input type="text" name="first name" id="txtFirstName" class="first"/> <input type="text" name="last name" class="last" id="txtLastName"/>
-						<p class="name">First<span class="name1">Last</span></p>		
+					<div id="itmName">
+					<input type="text" name="first name" id="txtFirstName" class="first"/> 
+					<input type="text" name="last name" class="last" id="txtLastName"/>
+					</div>
+					<p class="name">First<span class="name1">Last</span></p>		
 				
 				<!-- Email -->
 				<label for="txtEmail"><b>Email Address <span class="star">*</span></b></label>
+					<div id="itmEmail">
 					<input type="email" name="email" id="txtEmail" class="email"><br><br>
-				
+					</div>
 				<!-- Telephone -->
 				<label for="txtPhone_0"><b>Phone <span class="star">*</span></b></label><br>
+					<div id="itmPhone">
 					<input type="tel" name="Phone" id="txtPhone_0" maxlength ="3" class="phone1"> - 
 					<input type="tel" name="Phone" id="txtPhone_1" maxlength ="3" class="phone1"> - 
 					<input type="tel" name="Phone" id="txtPhone_2" maxlength ="4" class="phone2">
+					</div>
 					<p class="name"><b>(###)<span class="pNumber">###</span><span class="pNumber1">####</span></b></p>						
 				
 				<!-- Comments -->
