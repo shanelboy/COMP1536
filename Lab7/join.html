@@ -114,10 +114,23 @@
 			if(resumePattern.test(resume3Str))
 			return true;
 		}
+		
 		//Warning for invalid file format
 		function warnTestResume(id){
 			if(!testResume(id))
 			alert("Please select a file ending in .pdf/.doc/.docx");
+		}
+		
+		//All form validations into one function
+		function formValidate(){
+			if(warnPositionInvalid('selPosition') & warnPassedWeb('radPassedWeb_0') & 
+			   warnDateValid('txtStartDate') & warnTestResume('filResume') & 
+			   warnTestName('txtFirstName') & warnTestName('txtLastName') & 
+			   warnEmail('txtEmail') & warnPhoneDigit('txtPhone')){
+				return true;
+			} else {
+				return false;
+			}
 		}
 		</script>
 	</head>
@@ -182,10 +195,10 @@
 			</p>
 		<!-- Form -->
 		<div class="main_inner">              
-            <form method="post" action="http://webdevfoundations.net/scripts/formdemo.asp" name="SampleForm">
+            <form method="post" action="http://webdevfoundations.net/scripts/formdemo.asp" name="SampleForm" onsubmit="return formValidate();">
 				<!-- Selection value -->
 				<label for='selPosition'><b>Which position are you applying for? <span class="star">*</span></b></label>
-					<select id='selPosition' onchange="warnPositionInvalid('selPosition')">
+					<select id='selPosition'>
 						<option value="jobs">&nbsp;</option>
 						<option value="Project Manager">Project Manager</option>
 						<option value="Graphic Designer">Graphic Designer</option>
@@ -195,14 +208,14 @@
 					
 				<!--Radio button -->
 				<p><b>Passed Comp 1536? <span class="star">*</span></b></p>
-					<input type="radio" name="contact" id="radPassedWeb_0" value="Yes" onclick="warnPassedWeb('radPassedWeb_0')" checked="checked" /><label for="radPassedWeb_0"> Yes</label><br><br>
-					<input type="radio" name="contact" id="radPassedWeb_1" value="No" onclick="warnPassedWeb('radPassedWeb_0')"/><label for="radPassedWeb_1"> No</label><br><br>
+					<input type="radio" name="contact" id="radPassedWeb_0" value="Yes" checked="checked" /><label for="radPassedWeb_0"> Yes</label><br><br>
+					<input type="radio" name="contact" id="radPassedWeb_1" value="No"/><label for="radPassedWeb_1"> No</label><br><br>
 				
 				<!-- Start date -->
 				<label for="txtStartDate_0"><b>Earliest start date? <span class="star">*</span></b></label><br>
-					<input class="date" type="text" name="Month" id="txtStartDate_0" maxlength="2" onchange="warnDateValid('txtStartDate')"> / 
-					<input class="date" type="text" name="Day" id="txtStartDate_1" maxlength="2" onchange="warnDateValid('txtStartDate')"> / 
-					<input class="year" type="text" name="Year" id="txtStartDate_2" maxlength ="4" onchange="warnDateValid('txtStartDate')">
+					<input class="date" type="text" name="Month" id="txtStartDate_0" maxlength="2"> / 
+					<input class="date" type="text" name="Day" id="txtStartDate_1" maxlength="2"> / 
+					<input class="year" type="text" name="Year" id="txtStartDate_2" maxlength ="4" >
 					<p class="name">MM<span class="day">DD</span><span class="year1">YYYY</span></p>
 				
 				<!-- Portfolio -->
@@ -211,23 +224,23 @@
 				
 				<!-- Resume -->
 				<label for="filResume"><b>Attach resume</b></label><br>
-					<input type="file" name="resume" id="filResume" onchange="warnTestResume('filResume')"/>
+					<input type="file" name="resume" id="filResume"/>
 					<p class="resume">word or PDF Documents Only</p>
 				
 				<!-- Name -->
 				<label for="txtFirstName"><b>Name <span class="star">*</span></b></label><br>
-					<input type="text" name="first name" id="txtFirstName" onblur="warnTestName('txtFirstName')" class="first"/> <input type="text" name="last name" class="last" id="txtLastName" onblur="warnTestName('txtLastName')"/>
+					<input type="text" name="first name" id="txtFirstName" class="first"/> <input type="text" name="last name" class="last" id="txtLastName"/>
 						<p class="name">First<span class="name1">Last</span></p>		
 				
 				<!-- Email -->
 				<label for="txtEmail"><b>Email Address <span class="star">*</span></b></label>
-					<input type="email" name="email" id="txtEmail" class="email" onblur="warnEmail('txtEmail')"><br><br>
+					<input type="email" name="email" id="txtEmail" class="email"><br><br>
 				
 				<!-- Telephone -->
 				<label for="txtPhone_0"><b>Phone <span class="star">*</span></b></label><br>
-					<input type="tel" name="Phone" id="txtPhone_0" maxlength ="3" class="phone1" onblur="warnPhoneDigit('txtPhone')"> - 
-					<input type="tel" name="Phone" id="txtPhone_1" maxlength ="3" class="phone1" onblur="warnPhoneDigit('txtPhone')"> - 
-					<input type="tel" name="Phone" id="txtPhone_2" maxlength ="4" class="phone2" onblur="warnPhoneDigit('txtPhone')">
+					<input type="tel" name="Phone" id="txtPhone_0" maxlength ="3" class="phone1"> - 
+					<input type="tel" name="Phone" id="txtPhone_1" maxlength ="3" class="phone1"> - 
+					<input type="tel" name="Phone" id="txtPhone_2" maxlength ="4" class="phone2">
 					<p class="name"><b>(###)<span class="pNumber">###</span><span class="pNumber1">####</span></b></p>						
 				
 				<!-- Comments -->
