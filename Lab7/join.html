@@ -78,8 +78,9 @@
 		//Checking name
 		function testName(id){
 			var testNamePattern = /^([a-zA-Z]{1,15})$/;
-			var nameValue = $(id).value;
-			if (testNamePattern.test(nameValue))
+			var nameFirst = $(id+"First").value;
+			var nameLast = $(id+"Last").value;
+			if (testNamePattern.test(nameFirst) && testNamePattern.test(nameLast))
 				return true;
 		}
 		
@@ -162,8 +163,8 @@
 		function formValidate(){
 			if(warnPositionInvalid('selPosition') & warnPassedWeb('radPassedWeb_0') & 
 			   warnDateValid('txtStartDate') & warnTestResume('filResume') & 
-			   warnTestName('txtFirstName') & warnTestName('txtLastName') & 
-			   warnEmail('txtEmail') & warnPhoneDigit('txtPhone')){
+			   warnTestName('txtName') & warnEmail('txtEmail') & 
+			   warnPhoneDigit('txtPhone')){
 			   return true;
 			} else {
 			   return false;
@@ -273,8 +274,8 @@
 				<!-- Name -->
 				<label for="txtFirstName"><b>Name <span class="star">*</span></b></label><br>
 					<div id="itmName">
-					<input type="text" name="first name" id="txtFirstName" class="first"/> 
-					<input type="text" name="last name" class="last" id="txtLastName"/>
+					<input type="text" name="first name" id="txtNameFirst" class="first"/> 
+					<input type="text" name="last name" id="txtNameLast" class="last" />
 					</div>
 					<p class="name">First<span class="name1">Last</span></p>		
 				
