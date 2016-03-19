@@ -24,10 +24,12 @@
 		function warnPositionInvalid(id){
 			if (!testPositionValid(id)){
 				$('itmPosition').className = 'error';
-				//alert( "You must select a position" );
+				$('errPosition').innerHTML = "You must select a position.";
 				return false;
 			} else {
+				//Must choose which type of job they want so we can consider them properly
 				$('itmPosition').className='';
+				$('errPosition').innerHTML="";
 				return true;
 			}
 		}
@@ -41,9 +43,12 @@
 		function warnPassedWeb(id){
 			if (!testPassedWeb(id)){
 				$('itmPassedWeb').className = 'error';
+				$('errPassedWeb').innerHTML = "You will not be considered if have not passed.";
 				return false;
 			} else {
+				//This is a basic requirement for hiring so they must pass this course
 				$('itmPassedWeb').className = '';
+				$('errPosition').innerHTML = "";
 				return true;
 
 			}
@@ -68,9 +73,12 @@
 		function warnDateValid(id){
 			if(testDateValid(id) == false){
 				$('itmStartDate').className = 'error';
+				$('errStartDate').innerHTML = "Date must follow the specified format. (Day [00-31], Month [01-12] Year [2013-2099])";
 				return false;
 			} else {
+				//If provided we need to make sure it's a valid date
 				$('itmStartDate').className = '';
+				$('errStartDate').innerHTML = "";
 				return true;
 			}
 		}
@@ -88,9 +96,12 @@
 		function warnTestName(id){
 			if (!testName(id)){
 				$('itmName').className = 'error';
+				$('errName').innerHTML = "Name can't have numbers or special characters.";
 				return false;
 			} else {
+				//We need to know the name of our candidates to address them properly
 				$('itmName').className = '';
+				$('errName').innerHTML = "";
 				return true;
 			}
 		}
@@ -106,9 +117,12 @@
 		function warnEmail(id){
 			if(!testEmail(id)){
 				$('itmEmail').className = 'error';
+				$('errEmail').innerHTML = "Please enter a valid email that ends with .com .ca or .org";
 				return false;
 			} else {
+				//Email will be used to contact the candidate must be a proper email
 				$('itmEmail').className = '';
+				$('errEmail').innerHTML = "";
 				return true;
 			}
 		}
@@ -131,9 +145,12 @@
 		function warnPhoneDigit(id){
 			if(testPhoneDigit(id) == false){
 				$('itmPhone').className = 'error';
+				$('errPhone').innerHTML = "Area code must start with 1XX and be only numbers";
 				return false;
 			} else {
+				//If they provide a phone number we need to make sure it's valid
 				$('itmPhone').className = '';
+				$('errPhone').innerHTML = "";
 				return true;
 			}
 		}
@@ -152,9 +169,12 @@
 		function warnTestResume(id){
 			if(!testResume(id)){
 				$('itmResume').className = 'error';
+				$('errResume').innerHTML = "Please check the file type again";
 				return false;
 			} else {
+				//Needs to be a proper resume file type that we can access
 				$('itmResume').className = '';
+				$('errResume').innerHTML = "";
 				return true;
 			}
 		}
@@ -237,26 +257,35 @@
 				<!-- Selection value -->
 				<label for='selPosition'><b>Which position are you applying for? <span class="star">*</span></b></label>
 					<div id="itmPosition">
-					<select id='selPosition'>
-						<option value="jobs">&nbsp;</option>
-						<option value="Project Manager">Project Manager</option>
-						<option value="Graphic Designer">Graphic Designer</option>
-						<option value="Web Developer">Web Developer</option>
-						<option value="Database Administrator">Database Administrator</option>
-					</select>
+						<div id ="errPosition">
+							<!--empty to begin, filled by js -->
+						</div>
+						<select id='selPosition'>
+							<option value="jobs">&nbsp;</option>
+							<option value="Project Manager">Project Manager</option>
+							<option value="Graphic Designer">Graphic Designer</option>
+							<option value="Web Developer">Web Developer</option>
+							<option value="Database Administrator">Database Administrator</option>
+						</select>
 					</div>
 				<!--Radio button -->
 				<p><b>Passed Comp 1536? <span class="star">*</span></b></p>
 					<div id="itmPassedWeb">
-					<input type="radio" name="contact" id="radPassedWeb_0" value="Yes" checked="checked" /><label for="radPassedWeb_0"> Yes</label><br><br>
-					<input type="radio" name="contact" id="radPassedWeb_1" value="No"/><label for="radPassedWeb_1"> No</label><br><br>
+						<div id ="errPassedWeb">
+							<!--empty to begin, filled by js -->
+						</div>
+						<input type="radio" name="contact" id="radPassedWeb_0" value="Yes" checked="checked" /><label for="radPassedWeb_0"> Yes</label><br><br>
+						<input type="radio" name="contact" id="radPassedWeb_1" value="No"/><label for="radPassedWeb_1"> No</label><br><br>
 					</div>
 				<!-- Start date -->
 				<label for="txtStartDate_0"><b>Earliest start date? <span class="star">*</span></b></label><br>
 					<div id="itmStartDate">
-					<input class="date" type="text" name="Month" id="txtStartDate_0" maxlength="2"> / 
-					<input class="date" type="text" name="Day" id="txtStartDate_1" maxlength="2"> / 
-					<input class="year" type="text" name="Year" id="txtStartDate_2" maxlength ="4" >
+						<div id ="errStartDate">
+							<!--empty to begin, filled by js -->
+						</div>
+						<input class="date" type="text" name="Month" id="txtStartDate_0" maxlength="2"> / 
+						<input class="date" type="text" name="Day" id="txtStartDate_1" maxlength="2"> / 
+						<input class="year" type="text" name="Year" id="txtStartDate_2" maxlength ="4" >						
 					</div>
 					<p class="name">MM<span class="day">DD</span><span class="year1">YYYY</span></p>
 				
@@ -267,29 +296,41 @@
 				<!-- Resume -->
 				<label for="filResume"><b>Attach resume</b></label><br>
 					<div id="itmResume">
-					<input type="file" name="resume" id="filResume"/>
+						<div id ="errResume">
+							<!--empty to begin, filled by js -->
+						</div>
+						<input type="file" name="resume" id="filResume"/>
 					</div>
 					<p class="resume">word or PDF Documents Only</p>
 				
 				<!-- Name -->
 				<label for="txtFirstName"><b>Name <span class="star">*</span></b></label><br>
 					<div id="itmName">
-					<input type="text" name="first name" id="txtNameFirst" class="first"/> 
-					<input type="text" name="last name" id="txtNameLast" class="last" />
+						<div id ="errName">
+							<!--empty to begin, filled by js -->
+						</div>
+						<input type="text" name="first name" id="txtNameFirst" class="first"/> 
+						<input type="text" name="last name" id="txtNameLast" class="last" />
 					</div>
 					<p class="name">First<span class="name1">Last</span></p>		
 				
 				<!-- Email -->
 				<label for="txtEmail"><b>Email Address <span class="star">*</span></b></label>
 					<div id="itmEmail">
-					<input type="email" name="email" id="txtEmail" class="email"><br><br>
+						<div id ="errEmail">
+							<!--empty to begin, filled by js -->
+						</div>
+						<input type="email" name="email" id="txtEmail" class="email"><br><br>
 					</div>
 				<!-- Telephone -->
 				<label for="txtPhone_0"><b>Phone <span class="star">*</span></b></label><br>
 					<div id="itmPhone">
-					<input type="tel" name="Phone" id="txtPhone_0" maxlength ="3" class="phone1"> - 
-					<input type="tel" name="Phone" id="txtPhone_1" maxlength ="3" class="phone1"> - 
-					<input type="tel" name="Phone" id="txtPhone_2" maxlength ="4" class="phone2">
+						<div id ="errPhone">
+							<!--empty to begin, filled by js -->
+						</div>
+						<input type="tel" name="Phone" id="txtPhone_0" maxlength ="3" class="phone1"> - 
+						<input type="tel" name="Phone" id="txtPhone_1" maxlength ="3" class="phone1"> - 
+						<input type="tel" name="Phone" id="txtPhone_2" maxlength ="4" class="phone2">
 					</div>
 					<p class="name"><b>(###)<span class="pNumber">###</span><span class="pNumber1">####</span></b></p>						
 				
