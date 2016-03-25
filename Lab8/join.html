@@ -191,6 +191,7 @@
 			}
 		}
 		</script>
+
 	</head>
   
   <body>
@@ -253,7 +254,7 @@
 			</p>
 		<!-- Form -->
 		<div class="main_inner">              
-            <form name="SampleForm" action="http://webdevfoundations.net/scripts/formdemo.asp" onsubmit="return formValidate()" method="post">
+            <form name="SampleForm" action="servercheck.php" onsubmit="return formValidate()" method="post">
 				<!-- Selection value -->
 				<label for='selPosition'><b>Which position are you applying for? <span class="star">*</span></b></label>
 					<div id="itmPosition">
@@ -309,8 +310,8 @@
 						<div id ="errName">
 							<!--empty to begin, filled by js -->
 						</div>
-						<input type="text" name="first name" id="txtNameFirst" class="first"/> 
-						<input type="text" name="last name" id="txtNameLast" class="last" />
+						<input type="text" name="firstname" id="txtNameFirst" class="first"/> 
+						<input type="text" name="lastname" id="txtNameLast" class="last" />
 					</div>
 					<p class="name">First<span class="name1">Last</span></p>		
 				
